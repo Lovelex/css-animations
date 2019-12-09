@@ -1,0 +1,148 @@
+/** MIXINS **/
+@mixin centralize($direction) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: center;
+	align-items: center;
+}
+
+/** VARIABLES **/
+$dark: rgb(15, 15, 15);
+$contentHeight: 240px;
+$crossSize: 30px;
+$inputSize: 10px;
+$inputBorderSize: 10px;
+
+/** STYLES **/
+* { font-family: 'Segoe UI', Tahoma; box-sizing: border-box; }
+
+body, html {
+	@include centralize(row);
+	background-color: $dark;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.content {
+	@include centralize(column);
+	position: relative;
+	transform-origin: 10px 10px;
+	animation: popup 0.5s ease-in-out 0s forwards,
+						 spin 4s ease-in-out 1s forwards;
+
+	img {
+		top: -50px;
+		position: absolute;
+	
+	}
+	.card {
+		@include centralize(column);
+		position: relative;
+		background-color: #f8e3d4;
+		z-index: 1;
+		min-width: 500px;
+		min-height: $contentHeight;
+		
+		.cross-wrapper {
+			@include centralize(row);
+			background-color: $dark;
+			cursor: pointer;
+			width: $crossSize;
+			height: $crossSize;
+			position: absolute;
+			border-radius: 100%;
+			top: 10px;
+			left: 10px;
+
+			.cross {
+				font-weight: bold;
+				font-size: 12px;
+				border-radius: 100%;
+				color: cornsilk;
+
+			}
+		}
+
+		.phrases {
+			text-align: center;
+			color: $dark;
+			.title-wrapper {
+
+				.title {
+					margin-bottom: 4px;
+					font-size: 38px;
+				}
+			}
+
+			.subtitle-wrapper {
+
+				.subtitle {
+					font-weight: normal;
+
+				}
+			}
+		}
+
+		.form-wrapper {
+			text-align: center;
+			margin: 20px 0;
+
+			.form {
+
+				.input-wrapper {
+					@include centralize(row);
+
+					input[type="text"] {
+						border-top-left-radius: $inputBorderSize;
+						border-bottom-left-radius: $inputBorderSize;
+						padding: $inputSize;
+						border: #222 solid 1px;
+					}
+
+					input[type="submit"] {
+						border: none;
+						border-top-right-radius: $inputBorderSize;
+						border-bottom-right-radius: $inputBorderSize;
+						padding: $inputSize + 1px;
+						background-color: $dark;
+						color: cornsilk;
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes popup {
+	0% {
+		opacity: 0;
+		transform: translateY(-500px);
+	}
+	70% {
+		transform: translateY(50px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotateZ(0);
+	}
+	25% {
+		transform: rotateZ(100deg);
+	}
+	50% {
+		transform: rotateZ(60deg);
+	}
+	75% {
+		transform: rotateZ(80deg);
+	}
+	100% {
+		transform: rotateZ(75deg);
+	}
+}

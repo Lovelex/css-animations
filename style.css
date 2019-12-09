@@ -1,0 +1,114 @@
+* {
+	box-sizing: border-box;
+	
+}
+
+html, body {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.sky {
+	overflow: hidden;
+	position: relative;
+	background-color: #8eb5ff;
+	height: 250px;
+}
+
+.grass {
+	overflow: hidden;
+	position: relative;
+	background: #008616;
+	height: 230px;
+}
+
+.road {
+	
+	position: relative;
+	background-color: #6d6d6d;
+	border-top: 8px solid #808080;
+	border-bottom: 8px solid #808080;
+	height: 277px;
+}
+
+.road .lines {
+	position: absolute;
+	top: 45%;
+	left: 0;
+	width: 100%;
+	height: 12px;
+	background-image: linear-gradient(to right, transparent 50%, #dfdfdf 50%);
+	background-size: 80px 100%;
+	
+}
+
+/* ELEMENTS TO ANIMATE */
+
+
+.sky .cloud, .grass .cloud {
+	position: absolute;
+	animation-direction: reverse;
+}
+
+.sky .cloud:nth-child(1), .grass .cloud:nth-child(1) {
+	left: 0;
+	width: 250px;
+	animation: wind 30s linear 0s infinite reverse forwards;
+}
+
+.sky .cloud:nth-child(2), .grass .cloud:nth-child(2) {
+	opacity: 0.5;
+	top: 20px;
+	left: 50%;
+	width: 150px;
+	animation: wind 60s linear 0s infinite reverse forwards;
+	
+}
+.grass .cloud:nth-child(1), .grass .cloud:nth-child(2) {
+	opacity: 0.1;
+}
+
+.grass .cloud:nth-child(1) {
+	bottom: 0;
+}
+.road .mario {
+	position: absolute;
+	top: -15%;
+	animation: driver 5s linear 0s infinite forwards, 
+						 jump 0.4s ease 0.5s;
+}
+
+.road .luigi {
+	position: absolute;
+	top: 15%;
+	animation: driver 4s linear 0s infinite forwards;
+}
+
+/* KEYFRAMES */
+
+@keyframes driver {
+	from{
+		transform: translateX(-238px);
+	}
+	to{
+		transform: translateX(1600px);
+	}
+}
+
+@keyframes wind {
+	from{
+		left: -250px;
+	}
+	to {
+		left: 100%;
+	}
+}
+
+@keyframes jump {
+	0%{ top: -15% }
+	50%{ top: -25%; }
+	100%{ top: -15%; }
+}
